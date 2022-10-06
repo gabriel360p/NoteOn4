@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>NoteOn4</title>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="{% url 'noteon4:tperfil' USUARIO.id %}">{{USUARIO.nome}}</a>		
+					</li>
+					<li class="breadcrumb-item">
+						<a href="{% url 'noteon4:defbtnnvnota' USUARIO.id%}">Nova Nota</a>		
+					</li>
+					<li class="breadcrumb-item">
+						<a href="{% url 'noteon4:tlogin'%}">Sair</a>		
+					</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h2>
+					Olá Mundo!
+				</h2>
+				<p>
+					Veja a mais nova versão do NoteOn4!
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" href="#">Learn more</a>
+				</p>
+			</div>
+		</div>
+	</div>
+<div class="card-columns">
+{%for notas in NOTA %}
+	<div class="card border-dark mb-3" style="max-width: 18rem;background-color: {{notas.cor}}">
+	  <div class="card-body text-dark">
+	    <h5 class="card-title">Titulo: {{notas.titulo}}</h5>
+	    <h5 class="card-title">Subtitulo: {{notas.subtitulo}}</h5>
+	    <p class="card-text">{{notas.texto}}</p>
+	    <hr>
+
+	    <a href="{% url 'noteon4:tvernota' USUARIO.id notas.id%}">
+			<button type="button" class="btn btn-outline-dark">Abrir</button>
+		</a>
+		<a href="{% url 'noteon4:defdeletar' USUARIO.id notas.id%}">
+			<button type="button" class="btn btn-outline-dark">Deletar</button>
+		</a>
+
+		{{VerAlert}}
+
+
+		</a>
+	  </div>
+	</div>
+{% endfor %}
+</div>
+</body>
+</html>
+
